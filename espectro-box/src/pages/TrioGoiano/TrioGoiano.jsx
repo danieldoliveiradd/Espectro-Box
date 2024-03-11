@@ -7,7 +7,7 @@ function TrioGoiano() {
   const [subwoofers, setSubwoofers] = useState(1);
 
   const calcularLitragem = (values) => {
-    const { altura, largura, profundidade, formato } = values;
+    const { altura, largura, profundidade, formato, quantidade } = values;
     let totalLitragem = 0;
 
     if (altura && largura && profundidade) {
@@ -24,7 +24,13 @@ function TrioGoiano() {
       }
     }
 
-    setLitragem(totalLitragem.toFixed(2));
+    // Verifica se a litragem total é menor que 45L e define 45L como litragem mínima
+    const litragemMinima = 45;
+    totalLitragem = Math.max(totalLitragem, litragemMinima);
+
+    // Divida a litragem total pelo número de subwoofers
+    const litragemPorSubwoofer = totalLitragem / quantidade;
+    setLitragem(litragemPorSubwoofer.toFixed(2));
   };
 
   return (
@@ -38,6 +44,7 @@ function TrioGoiano() {
           largura: "",
           profundidade: "",
           formato: "1",
+          quantidade: "1", // Valor padrão para a quantidade de subwoofers
         }}
         validate={(values) => {
           const errors = {};
@@ -87,7 +94,7 @@ function TrioGoiano() {
               />
             </div>
             <div>
-            <label htmlFor="quantidade">Quantos Subwoofers? (Qtd):</label>
+              <label htmlFor="quantidade">Quantos Subwoofers? (Qtd):</label>
               <Field type="number" name="quantidade" />
               <ErrorMessage
                 name="quantidade"
@@ -106,7 +113,7 @@ function TrioGoiano() {
               Calcular Litragem
             </button>
             <div className="trio-goiano-litragem">
-              {litragem && `A litragem necessária é de ${litragem} litros.`}
+              {litragem && `A litragem necessária por subwoofer é de ${litragem} litros.`}
             </div>
           </Form>
         )}
