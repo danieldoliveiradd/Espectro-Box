@@ -1,0 +1,32 @@
+.container {
+  .menu {
+    nav {
+      h1 {
+        font-weight: 400;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      background-color: #1e1e1e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 5vh;
+      ul {
+        display: flex;
+        list-style: none;
+        li {
+          a {
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+            margin: 15px;
+            font-weight: 300;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
