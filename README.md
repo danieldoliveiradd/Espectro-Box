@@ -28,13 +28,5 @@ Contribuições são bem-vindas! Se você quiser melhorar este projeto de alguma
 
 ## Autor
 
-Este projeto foi desenvolvido por [Nome do Autor].
-
-## Contato
-
-Para mais informações, entre em contato através do email [seu@email.com].
-
-## Licença
-
-Este projeto está licenciado sob a [Licença XYZ]. Consulte o arquivo LICENSE.md para obter mais detalhes.
+Este projeto foi desenvolvido por [Daniel].
 
