@@ -7,28 +7,35 @@ function TrioGoiano() {
   const [subwoofers, setSubwoofers] = useState(1);
 
   const calcularLitragem = (values) => {
-    const { altura, largura, profundidade, formato, quantidade } = values;
+    const { altura, largura, profundidade, formato } = values;
     let totalLitragem = 0;
-
-    if (altura && largura && profundidade) {
-      // Calcula a litragem com base no formato do gabinete
-      switch (formato) {
-        case "1":
-          totalLitragem = (altura * largura * profundidade) / 1000; // Convertendo de cm³ para litros
-          break;
-        case "2":
-          totalLitragem = ((altura * largura * profundidade) / 1000) * 0.5; // Considerando apenas metade do volume para formato triangular
-          break;
-        default:
-          break;
-      }
+    const quantidade = parseInt(values.quantidade);
+  
+    // Convertendo as medidas externas para medidas internas considerando a espessura da madeira
+    const espessuraMadeira = 1.5; // Supondo que a espessura da madeira seja de 1.5 cm
+    const alturaInterna = altura - 2 * espessuraMadeira;
+    const larguraInterna = largura - 2 * espessuraMadeira;
+    const profundidadeInterna = profundidade - 2 * espessuraMadeira;
+  
+    // Calcula a litragem com base no formato do gabinete
+    switch (formato) {
+      case "1": // Caixa retangular
+        totalLitragem = (alturaInterna * larguraInterna * profundidadeInterna) / 1000;
+        break;
+      case "2": // Caixa trapezoidal
+        const profundidadeMedia = (parseInt(profundidadeInterna) + parseInt(values.profundidade2)) / 2;
+        totalLitragem = (alturaInterna * larguraInterna * profundidadeMedia) / 1000;
+        break;
+      default:
+        break;
     }
-
-    // Verifica se a litragem total é menor que 45L e define 45L como litragem mínima
+  
+    // Verifica se a litragem total está dentro do limite permitido (variando 30% da litragem recomendada pelo fabricante)
     const litragemMinima = 45;
-    totalLitragem = Math.max(totalLitragem, litragemMinima);
-
-    // Divida a litragem total pelo número de subwoofers
+    const litragemMaxima = totalLitragem * 1.3; // Aumento de 30%
+    totalLitragem = Math.max(Math.min(totalLitragem, litragemMaxima), litragemMinima);
+  
+    // Divide a litragem total pelo número de subwoofers
     const litragemPorSubwoofer = totalLitragem / quantidade;
     setLitragem(litragemPorSubwoofer.toFixed(2));
   };
@@ -64,7 +71,7 @@ function TrioGoiano() {
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values }) => (
           <Form className="trio-goiano-form">
             <div>
               <label htmlFor="altura">Altura (cm):</label>
@@ -112,12 +119,16 @@ function TrioGoiano() {
             <button type="submit" disabled={isSubmitting}>
               Calcular Litragem
             </button>
-            <div className="trio-goiano-litragem">
-              {litragem && `A litragem necessária por subwoofer é de ${litragem} litros.`}
-            </div>
           </Form>
         )}
       </Formik>
+      <div className="trio-goiano-litragem">
+        {litragem && (
+          <p>
+            A litragem necessária por subwoofer é de {litragem} litros.
+          </p>
+        )}
+      </div>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <img
           src="https://i.ibb.co/YWQdNmt/424b6f7d591d274a1e78d3b092b732bba28e0367.png"
