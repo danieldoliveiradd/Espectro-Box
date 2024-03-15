@@ -1,70 +1,69 @@
 .trio-goiano-container {
-    max-width: 600px;
-    margin: 0 auto; // Isso centraliza o componente horizontalmente
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px; // Adicione um espaço no topo para centralizar verticalmente
-  }
-  
-  .trio-goiano-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .trio-goiano-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .trio-goiano-litragem{
-    margin-top: 10px;
-    text-align: center;
-  }
+  max-width: 600px;
+  margin: 50px auto; /* Centraliza o componente horizontalmente e adiciona espaço no topo */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; /* Adiciona um espaço no topo para centralizar verticalmente */
+}
 
-  .trio-goiano-form label {
-    margin-bottom: 10px;
-  }
-  
-  .trio-goiano-form input[type='number'] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .trio-goiano-image {
-    width: 30%;
-    border-radius: 50px; /* Torna a imagem circular */
-  }
-  
+.trio-goiano-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
 
-  .trio-goiano-form button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .trio-goiano-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .trio-goiano-error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
-  .trio-goiano-image {
-    max-width: 100%;
-    margin-top: 20px; // Adicione um espaço no topo da imagem
-  }
-  
+.trio-goiano-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.trio-goiano-litragem {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.trio-goiano-form label {
+  margin-bottom: 10px;
+}
+
+.trio-goiano-form input[type='number'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.trio-goiano-image {
+  width: 30%;
+  border-radius: 50px; /* Torna a imagem circular */
+}
+
+.trio-goiano-form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.trio-goiano-form button:hover {
+  background-color: #0056b3;
+}
+
+.trio-goiano-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.trio-goiano-image {
+  max-width: 100%;
+  margin-top: 20px; /* Adiciona um espaço no topo da imagem */
+}
+

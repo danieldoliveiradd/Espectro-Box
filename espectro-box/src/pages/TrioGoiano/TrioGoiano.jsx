@@ -2,41 +2,40 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "./style.scss";
 
-function TrioGoiano() {
+const TrioGoiano = () => {
   const [litragem, setLitragem] = useState("");
-  const [subwoofers, setSubwoofers] = useState(1);
 
   const calcularLitragem = (values) => {
-    const { altura, largura, profundidade, formato } = values;
-    let totalLitragem = 0;
-    const quantidade = parseInt(values.quantidade);
-  
-    // Convertendo as medidas externas para medidas internas considerando a espessura da madeira
-    const espessuraMadeira = 1.5; // Supondo que a espessura da madeira seja de 1.5 cm
+    const espessuraMadeira = 1.5; // Espessura da madeira em cm
+
+    const calcularLitragemFormato = (alturaInterna, larguraInterna, profundidadeInterna) => {
+      let totalLitragem = 0;
+      switch (values.formato) {
+        case "1": // Caixa retangular
+          totalLitragem = (alturaInterna * larguraInterna * profundidadeInterna) / 1000;
+          break;
+        case "2": // Caixa trapezoidal
+          const profundidadeMedia = (parseInt(profundidadeInterna) + parseInt(values.profundidade2)) / 2;
+          totalLitragem = (alturaInterna * larguraInterna * profundidadeMedia) / 1000;
+          break;
+        default:
+          break;
+      }
+      return totalLitragem;
+    };
+
+    const { altura, largura, profundidade, quantidade } = values;
     const alturaInterna = altura - 2 * espessuraMadeira;
     const larguraInterna = largura - 2 * espessuraMadeira;
     const profundidadeInterna = profundidade - 2 * espessuraMadeira;
-  
-    // Calcula a litragem com base no formato do gabinete
-    switch (formato) {
-      case "1": // Caixa retangular
-        totalLitragem = (alturaInterna * larguraInterna * profundidadeInterna) / 1000;
-        break;
-      case "2": // Caixa trapezoidal
-        const profundidadeMedia = (parseInt(profundidadeInterna) + parseInt(values.profundidade2)) / 2;
-        totalLitragem = (alturaInterna * larguraInterna * profundidadeMedia) / 1000;
-        break;
-      default:
-        break;
-    }
-  
-    // Verifica se a litragem total está dentro do limite permitido (variando 30% da litragem recomendada pelo fabricante)
+
+    const totalLitragem = calcularLitragemFormato(alturaInterna, larguraInterna, profundidadeInterna);
+
     const litragemMinima = 45;
-    const litragemMaxima = totalLitragem * 1.3; // Aumento de 30%
-    totalLitragem = Math.max(Math.min(totalLitragem, litragemMaxima), litragemMinima);
-  
-    // Divide a litragem total pelo número de subwoofers
-    const litragemPorSubwoofer = totalLitragem / quantidade;
+    const litragemMaxima = totalLitragem * 1.3;
+    const litragemFinal = Math.max(Math.min(totalLitragem, litragemMaxima), litragemMinima);
+
+    const litragemPorSubwoofer = litragemFinal / quantidade;
     setLitragem(litragemPorSubwoofer.toFixed(2));
   };
 
@@ -51,19 +50,15 @@ function TrioGoiano() {
           largura: "",
           profundidade: "",
           formato: "1",
-          quantidade: "1", // Valor padrão para a quantidade de subwoofers
+          quantidade: "1",
         }}
         validate={(values) => {
           const errors = {};
-          if (!values.altura) {
-            errors.altura = "Informe a altura do gabinete";
-          }
-          if (!values.largura) {
-            errors.largura = "Informe a largura do gabinete";
-          }
-          if (!values.profundidade) {
-            errors.profundidade = "Informe a profundidade do gabinete";
-          }
+          ['altura', 'largura', 'profundidade'].forEach(field => {
+            if (!values[field]) {
+              errors[field] = `Informe a ${field} do gabinete`;
+            }
+          });
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -71,7 +66,7 @@ function TrioGoiano() {
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting }) => (
           <Form className="trio-goiano-form">
             <div>
               <label htmlFor="altura">Altura (cm):</label>
@@ -148,6 +143,6 @@ function TrioGoiano() {
       </div>
     </div>
   );
-}
+};
 
 export default TrioGoiano;
