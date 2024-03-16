@@ -6,12 +6,11 @@ function MenuBar() {
     <div className="container">
       <div className="menu">
         <nav>
-        <h1>LuminaBox</h1>
+        <h1>Espectro Box</h1>
           <ul>
             <li><a href="#">Início</a></li>
-            <li><a href="#">Recomendações</a></li>
-            <li><a href="#">Caixas</a></li>
-            <li><a href="#">Creditos</a></li>
+            <li><a href="#">Softawre</a></li>
+            <li><a href="#">Contato</a></li>
           </ul>
         </nav>
       </div>
