@@ -5,6 +5,7 @@ function MenuBar() {
   return (
     <div className="container">
       <div className="menu">
+          <span>O propósito deste software é auxiliar no cálculo da litragem para caixas de subwoofer. Estamos atualmente na versão V1. Por favor, nos ajude a identificar erros, <a href="#">clicando aqui.</a></span>
         <nav>
         <h1>Espectro Box</h1>
           <ul>
