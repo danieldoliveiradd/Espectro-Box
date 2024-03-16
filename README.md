@@ -24,7 +24,7 @@ Esta é uma aplicação web desenvolvida para calcular a litragem necessária pa
 1. Clone o repositório para o seu ambiente local.
 2. Abra um terminal na pasta do projeto e execute o comando `npm install` para instalar as dependências.
 3. Execute o comando `npm start` para iniciar a aplicação.
-4. Acesse a aplicação no seu navegador através do endereço `http://localhost:3000`.
+4. Acesse a aplicação no seu navegador através do endereço `http://localhost:3000`. 
 
 ## Contribuição
 
