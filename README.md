@@ -1,4 +1,8 @@
-# Calculadora de Litragem para Subwoofers
+<h1 align="center">
+  🔈 Espectro Box 🔈
+</h1>
+
+![Mars Rover](https://i.ibb.co/cQMFr31/Desktop.png)
 
 Esta é uma aplicação web desenvolvida para calcular a litragem necessária para caixas de subwoofers, com suporte para diferentes configurações de subwoofers e tipos de caixas.
 
